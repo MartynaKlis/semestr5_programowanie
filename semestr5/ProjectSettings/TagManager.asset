@@ -45,28 +45,5 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: FarBG
-    uniqueID: 4136850807
-    locked: 0
-  - name: NotSoFarBG
-    uniqueID: 744262587
-    locked: 0
-  - name: CloseBG
-    uniqueID: 3376884935
-    locked: 0
-  - name: TreesNBushes
-    uniqueID: 1816886845
-    locked: 0
-  - name: Gameplay
-    uniqueID: 1832996063
-    locked: 0
-  - name: Foreground
-    uniqueID: 3667361047
-    locked: 0
   m_RenderingLayers:
   - Default
-  - Layer 1
-  - Layer 2
-  - Layer 3
-  - Layer 4
-  - Layer 5
