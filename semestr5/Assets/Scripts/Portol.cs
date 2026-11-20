@@ -1,51 +1,25 @@
-using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(SpriteRenderer))]
-public class ExitGate : MonoBehaviour
+public class Portol : MonoBehaviour
 {
-    [SerializeField] private PlayerController player;
-    [SerializeField] private TMP_Text goalText;
-    [SerializeField] private GameObject winPanel;
-    [SerializeField] private int requiredPoints = 4;
-    private SpriteRenderer gateRenderer;
-    private bool won;
+    [Tooltip(" Level2")]
+    [SerializeField] private string nazwaScenyDocelowej = "Level02";
 
-    private void Awake()
-    {
-        gateRenderer = GetComponent<SpriteRenderer>();
-    }
+    [Tooltip("Tag obiektu gracza")]
+    [SerializeField] private string tagGracza = "Player";
 
-    private void Start()
-    {
-        winPanel.SetActive(false);
-    }
-
-    private void Update()
-    {
-        if (won) return;
-        bool ready = player.GetPoints() >= requiredPoints;
-        gateRenderer.color = ready ? Color.green : Color.red;
-        goalText.text = ready
-            ? "Wyjscie otwarte - dotknij bramki!"
-            : "Zbierz " + requiredPoints + " pkt";
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (won) return;
-        PlayerController visitor =
-            other.GetComponentInParent<PlayerController>();
-        if (visitor != player) return;
-        if (player.GetPoints() < requiredPoints) return;
+        if (other.CompareTag(tagGracza))
+        {
+            PrzeniesNaKolejnyPoziom();
+        }
+    }
 
-        won = true;
-        goalText.text = "Poziom ukonczony!";
-        winPanel.SetActive(true);
-        player.enabled = false;
-        Rigidbody2D body = player.GetComponent<Rigidbody2D>();
-        body.linearVelocity = Vector2.zero;
-        body.simulated = false;
+    private void PrzeniesNaKolejnyPoziom()
+    {
+        SceneManager.LoadScene(nazwaScenyDocelowej);
     }
 }
-
